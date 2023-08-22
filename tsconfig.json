@@ -18,6 +18,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/component/header/ImageCrop.jsx",
+    "src/component/ImageCrop.tsx",
+    "src/pages/api/auth/[...nextauth].ts",
+    "src/component/employee/Index.jsx"
+  ],
   "exclude": ["node_modules"]
 }
