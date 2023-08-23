@@ -45,7 +45,7 @@ const Register = () => {
   };
   return (
     <>
-      <div className='mx-auto font-content border max-w-md pb-10 shadow-2xl rounded-md'>
+      <div className='mx-auto font-content border max-w-md shadow-2xl rounded-md'>
         <h2 className='text-center py-6 lg:py-10 text-2xl font-heading'>
           Register
         </h2>
@@ -83,7 +83,7 @@ const Register = () => {
                 handleChange={handleChange}
                 type='password'
               />
-              <div className='border-2 text-center text-gray-500 px-3 py-2 rounded-lg border-electric-violet-500 hover:border-razzle-dazzle-rose-600'>
+              <div className='border-2 text-center text-gray-400 px-3 py-2 rounded-lg border-electric-violet-500 hover:border-razzle-dazzle-rose-600'>
                 <input
                   type='file'
                   accept='image/*'
@@ -123,6 +123,10 @@ const Register = () => {
               </button>
             </div>
           </form>
+        </div>
+        <div className='text-xs pt-10 pb-1 px-3 text-center'>
+          Note: Please do not use any Banking or social media password. I have
+          not invested anything on security.{' '}
         </div>
       </div>
     </>
