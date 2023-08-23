@@ -16,18 +16,21 @@ export default async function handler(
     try {
       const existingUser = await User.findOne({ email });
       if (!existingUser)
-        return res.status(404).json({ message: "User doesn't exist." });
+        return alert('User does not exist. Please register first.');
       const isPasswordCorrect = await bcrypt.compare(
         password,
         existingUser.password,
       );
       if (!isPasswordCorrect)
-        return res.status(400).json({ message: 'Invalid credentials.' });
+        return alert('Invalid credentials. Please try again.');
       const token = Jwt.sign(
         { email: existingUser.email, id: existingUser._id },
         'test',
-        { expiresIn: '1h' },
+        { expiresIn: '30m' },
       );
+      if (res.status(401))
+        return alert('Invalid credentials. Please try again.');
+      if (!token) return alert('Token generation failed.');
       res.status(200).json({ result: existingUser, token });
     } catch (error) {
       console.log(error);

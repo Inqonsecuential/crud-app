@@ -17,7 +17,9 @@ const Delete = ({ handleCloseDelete, employee }: DeleteProps) => {
     e.preventDefault();
     const res = await deleteEmployee(employee._id);
     handleCloseDelete;
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const handleOverlayClick = (e: MouseEvent) => {
@@ -34,7 +36,7 @@ const Delete = ({ handleCloseDelete, employee }: DeleteProps) => {
   }, []);
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-10'>
+    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-10 font-content'>
       <div className='w-[400px] bg-white rounded-lg p-6' ref={modalRef}>
         <h2 className='text-center text-2xl font-heading'>
           Delete {employee.name}

@@ -17,14 +17,19 @@ export default NextAuth({
       },
       authorize: async (credentials) => {
         if (!credentials) {
-          throw new Error('Missing credentials');
+          throw new Error('Please enter your credentials');
         }
         const { email, password } = credentials;
+        if (!email || !password) {
+          throw new Error('Please enter your email and password');
+        }
+
         await connectMongo();
         const user = await User.findOne({ email });
         if (!user) {
-          throw new Error('Invalid email');
+          throw new Error('User does not exist. Please register first.');
         }
+
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) {
           throw new Error('Invalid password');
@@ -33,4 +38,13 @@ export default NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user }) {
+      if (!user) {
+        alert('Please check your email and password.');
+        return Promise.resolve(false);
+      }
+      return Promise.resolve(true);
+    },
+  },
 });
